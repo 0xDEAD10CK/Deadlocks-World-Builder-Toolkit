@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='diceroller.css') }}">
+    <title>Dice Roller</title>
+</head>
+<body>
+    <h1>Dice Roller</h1>
+    <form method="post" novalidate>
+        <label for="num_dice">Number of Dice:</label>
+        <input type="number" id="num_dice" name="num_dice" value="1" min="1"><br>
+        <label for="dice_sides">Sides per Die:</label>
+        <input type="number" id="dice_sides" name="dice_sides" value="6" min="2"><br>
+        <input type="submit" value="Roll Dice">
+    </form>
+
+    {% if result is not none %}
+        <h2>Roll Result</h2>
+		<p>Results: {{ result }}</p>
+		<p>Total: {{ total }}</p>
+    {% endif %}
+</body>
+</html>
+
