@@ -9,7 +9,14 @@ app = Flask(__name__)
 # Home route
 @app.route('/')
 def home():
-    return "Welcome to the Flask App!"
+    return '''
+    <ul>
+        <li><a href="/potions/20">Generate Potions</a></li>
+        <li><a href="/npc/20">Generate NPCs</a></li>
+        <li><a href="/names/20">Generate Names</a></li>
+        <li><a href="/dice_roller">Roll some dice!</a></li>
+    </ul>
+    '''
 
 # Hello route with a dynamic URL parameter
 @app.route('/hello/<name>')
@@ -53,6 +60,7 @@ def template(num):
 @app.route('/dice_roller', methods=['GET', 'POST'])
 def dice_roller():
     result = None
+    total = 0
     if request.method == 'POST':
         num_dice = int(request.form.get('num_dice', 1))
         dice_sides = int(request.form.get('dice_sides', 6))
