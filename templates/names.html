@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 	<link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
-    <title>Flask App</title>
+    <title>Name Generator</title>
 </head>
 <body>
 	<a class="backButton" href="/">Home</a>
     <h1>Generated Names</h1>
-    <ul>
+    <ul id="menu">
         {% for item in items %}
-            <li>{{ item }}</li>
+            <li class="listItem">{{ item }}</li>
         {% endfor %}
     </ul>
 </body>

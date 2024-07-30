@@ -1,9 +1,78 @@
-.backButton {
+body{
+	font-family: Garamond, serif;
+}
+
+a.backButton {
 	font-weight: bold;
 	list-style: none;
 	border: 1px black solid;
 	border-radius: 6px;
 	text-align: center;
 	padding: 5px 15px;
-	margin: 20px 50px;
+	margin: 50px 20px;
+}
+
+ul#menu {
+	display: grid;
+	gap: 1em;
+	margin: 0 60px;
+	grid-template-columns: repeat(7, 1fr);
+	margin: 0 60px;
+	padding: 0;
+}
+
+li.menuItem, li.listItem{
+	color: black;
+	font-weight: bold;
+	font-size: 1.5em;
+	list-style: none;
+	border: 1px black solid;
+	border-radius: 6px;
+	text-align: center;
+	padding: 5px 0;
+}
+
+li.menuItem:hover {
+	background-color: #dddddd;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+.item-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+}
+
+.item-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.2em;
+}
+
+.item-card p {
+    margin: 5px 0;
+}
+
+@media only screen and (max-width: 480px) {
+	ul#menu {
+	display: grid;
+	gap: 1em;
+	margin: 0 10px;
+	grid-template-columns: repeat(2, 1fr);
+	padding: 0;
+}
 }

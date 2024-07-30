@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Flask App</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
+    <title>World Generators</title>
 </head>
 <body>
-    <h1>Home</h1>
-    <ul>
-        <a href="/potions/20"><li>Generate Potions</li></a>
-        <a href="/npc/20"><li>Generate NPCs</li></a>
-        <a href="/names/20"><li>Generate Names</li></a>
-        <a href="/dice_roller"><li>Roll some dice!</li></a>
+    <h1>World Generators</h1>
+    <ul id="menu">
+        <a href="/potions/20"><li class="menuItem">Generate Potions</li></a>
+        <a href="/npc/20"><li class="menuItem">Generate NPCs</li></a>
+        <a href="/names/20"><li class="menuItem">Generate Names</li></a>
+        <a href="/dice_roller"><li class="menuItem">Roll some dice!</li></a>
     </ul>
 </body>
 </html>

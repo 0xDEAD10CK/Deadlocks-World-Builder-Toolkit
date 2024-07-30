@@ -11,36 +11,6 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-# Hello route with a dynamic URL parameter
-@app.route('/hello/<name>')
-def hello(name):
-    return f"Hello, {name}!"
-
-# JSON response route
-@app.route('/data', methods=['GET'])
-def data():
-    sample_data = {
-        "name": "John Doe",
-        "age": 30,
-        "city": "New York"
-    }
-    return jsonify(sample_data)
-
-# Form handling route
-@app.route('/form', methods=['GET', 'POST'])
-def form():
-    if request.method == 'POST':
-        name = request.form.get('name')
-        age = request.form.get('age')
-        return f"Received: Name = {name}, Age = {age}"
-    return '''
-        <form method="post">
-            Name: <input type="text" name="name"><br>
-            Age: <input type="text" name="age"><br>
-            <input type="submit" value="Submit">
-        </form>
-    '''
-
 # Render an HTML template generating Names
 @app.route('/names/<int:num>')
 def template(num):
