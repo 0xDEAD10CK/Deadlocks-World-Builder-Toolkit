@@ -5,6 +5,7 @@ from modules.FantasyNames import gen_name
 from modules.npc import generateNPC
 from modules.potions import generate_potion
 from modules.wildmagictable import randomEffect
+from modules.tavern import generate_tavern
 app = Flask(__name__)
 
 with open('modules/done.txt', 'r') as file:
@@ -60,6 +61,10 @@ def random_effect():
     effect = randomEffect(arr)
     return render_template('effect.html', effect=effect)
  
+@app.route('/tavern')
+def create_tavern():
+    tavern = generate_tavern()
+    return render_template('tavern.html', tavern=tavern)
  # LOOT GENERATOR
  # LOCATION GENERATOR
  # QUEST GENERATOR

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tavern Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
+</head>
+<body>
+    <a class="backButton" href="/">Home</a>
+    <h1>{{ tavern.name }}</h1>
+    <div class="tavern-details">
+        <p><strong>Location:</strong> {{ tavern.location }}</p>
+        <p><strong>Appearance:</strong> {{ tavern.appearance }}</p>
+        <p><strong>Owner:</strong> {{ tavern.owner.name }} - {{ tavern.owner.description }}</p>
+        
+        <h2>Menu</h2>
+        <div class="menu-section">
+            <h3>Food</h3>
+            <ul>
+                {% for food in tavern.menu.food %}
+                    <li>{{ food }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Drinks</h3>
+            <ul>
+                {% for drink in tavern.menu.drinks %}
+                    <li>{{ drink }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <h2>Patrons</h2>
+        <div class="patrons-section">
+            <h3>Regulars</h3>
+            <ul>
+                {% for regular in tavern.patrons.regulars %}
+                    <li>{{ regular.name }} - {{ regular.description }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Travelers</h3>
+            <ul>
+                {% for traveler in tavern.patrons.travelers %}
+                    <li>{{ traveler.description }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Notable Figures</h3>
+            <ul>
+                {% for figure in tavern.patrons.notable_figures %}
+                    <li>{{ figure.name }} - {{ figure.description }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <h2>Staff</h2>
+        <div class="staff-section">
+            <p><strong>Bartender:</strong> {{ tavern.staff.bartender.name }} - {{ tavern.staff.bartender.description }}</p>
+            <p><strong>Cook:</strong> {{ tavern.staff.cook.name }} - {{ tavern.staff.cook.description }}</p>
+        </div>
+
+        <h2>Atmosphere</h2>
+        <div class="atmosphere-section">
+            <p><strong>Music:</strong> {{ tavern.atmosphere.music }}</p>
+            <p><strong>Lighting:</strong> {{ tavern.atmosphere.lighting }}</p>
+            <p><strong>Smells:</strong> {{ tavern.atmosphere.smells }}</p>
+        </div>
+
+        <h2>Plot Hooks</h2>
+        <div class="plot-hooks-section">
+            <p><strong>Quests:</strong> {{ tavern.plot_hooks.quests[0].description }}</p>
+            <p><strong>Rumors:</strong> {{ tavern.plot_hooks.rumors[0].description }}</p>
+            <p><strong>Requests:</strong> {{ tavern.plot_hooks.requests[0].description }}</p>
+        </div>
+
+        <h2>Events</h2>
+        <div class="events-section">
+            <p><strong>Special Occasions:</strong> {{ tavern.events.special_occasions[0].description }}</p>
+            <p><strong>Games:</strong> {{ tavern.events.games[0].description }}</p>
+            <p><strong>Incidents:</strong> {{ tavern.events.incidents[0].description }}</p>
+        </div>
+    </div>
+</body>
+</html>
