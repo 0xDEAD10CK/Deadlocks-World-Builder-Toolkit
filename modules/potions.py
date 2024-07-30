@@ -131,6 +131,3 @@ def generate_potion(effect_count):
             price = price + random.randrange(highLevelMin, highLevelMax, 100)
     
     return {"effects": effects, "price": price}
-    
-    
-print(generate_potion(2))

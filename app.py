@@ -4,7 +4,13 @@ from flask import Flask, request, jsonify, render_template
 from modules.FantasyNames import gen_name
 from modules.npc import generateNPC
 from modules.potions import generate_potion
+from modules.wildmagictable import randomEffect
 app = Flask(__name__)
+
+with open('modules/done.txt', 'r') as file:
+    content = file.read()
+
+arr = content.split('\n')
 
 # Home route
 @app.route('/')
@@ -48,8 +54,11 @@ def pot_gen(num):
         items.append(generate_potion(effectCount))
     return render_template('potions.html', items=items)
  
- 
- 
+  # Render Template for Random Effects
+@app.route('/random_effect')
+def random_effect():
+    effect = randomEffect(arr)
+    return render_template('effect.html', effect=effect)
  
  # LOOT GENERATOR
  # LOCATION GENERATOR

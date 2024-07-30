@@ -30,6 +30,7 @@ li.menuItem, li.listItem{
 	border-radius: 6px;
 	text-align: center;
 	padding: 5px 0;
+	width: 200px;
 }
 
 li.menuItem:hover {
@@ -69,10 +70,16 @@ a {
 
 @media only screen and (max-width: 480px) {
 	ul#menu {
-	display: grid;
-	gap: 1em;
-	margin: 0 10px;
-	grid-template-columns: repeat(2, 1fr);
-	padding: 0;
-}
+		display: grid;
+		gap: 1em;
+		margin: auto auto;
+		grid-template-columns: repeat(2, 1fr);
+		padding: 0;
+	}
+	
+	li.menuItem, li.listItem {
+		width: 175px;
+		margin: auto auto;
+	}
+
 }
