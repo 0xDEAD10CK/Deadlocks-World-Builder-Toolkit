@@ -68,6 +68,16 @@ a {
     margin: 5px 0;
 }
 
+.smallText {
+	font-size: 14px;
+}
+
+.wildMagic {
+	border: 1px black solid;
+	border-radius: 6px;
+	text-align: center;
+}
+
 @media only screen and (max-width: 480px) {
 	ul#menu {
 		display: grid;
@@ -81,5 +91,4 @@ a {
 		width: 175px;
 		margin: auto auto;
 	}
-
 }
