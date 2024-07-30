@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
     <title>Flask App</title>
 </head>
 <body>
-    <h1>Home</h1>
+	<a class="backButton" href="/">Home</a>
+    <h1>Generated Names</h1>
     <ul>
-        <a href="/potions/20"><li>Generate Potions</li></a>
-        <a href="/npc/20"><li>Generate NPCs</li></a>
-        <a href="/names/20"><li>Generate Names</li></a>
-        <a href="/dice_roller"><li>Roll some dice!</li></a>
+        {% for item in items %}
+            <li>{{ item }}</li>
+        {% endfor %}
     </ul>
 </body>
 </html>

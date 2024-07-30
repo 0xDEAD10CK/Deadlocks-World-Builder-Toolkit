@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='diceroller.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
     <title>Dice Roller</title>
 </head>
 <body>
-	<a href="/">Home</a>
+	<a class="backButton" href="/">Home</a>
     <h1>Dice Roller</h1>
     <form method="post" novalidate>
         <label for="num_dice">Number of Dice:</label>

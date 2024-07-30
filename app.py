@@ -9,14 +9,7 @@ app = Flask(__name__)
 # Home route
 @app.route('/')
 def home():
-    return '''
-    <ul>
-        <li><a href="/potions/20">Generate Potions</a></li>
-        <li><a href="/npc/20">Generate NPCs</a></li>
-        <li><a href="/names/20">Generate Names</a></li>
-        <li><a href="/dice_roller">Roll some dice!</a></li>
-    </ul>
-    '''
+    return render_template('index.html')
 
 # Hello route with a dynamic URL parameter
 @app.route('/hello/<name>')
@@ -54,7 +47,7 @@ def template(num):
     items = []
     for i in range(num):
         items.append(gen_name())
-    return render_template('index.html', items=items)
+    return render_template('names.html', items=items)
 
 # Render a Dice Roller in a template
 @app.route('/dice_roller', methods=['GET', 'POST'])
@@ -68,6 +61,7 @@ def dice_roller():
         total = sum(result)
     return render_template('diceroller.html', result=result, total=total)
 
+# Render Template for NPCS
 @app.route('/npc/<int:num>')
 def npc_gen(num):
     items = []
@@ -75,6 +69,7 @@ def npc_gen(num):
         items.append(generateNPC())
     return render_template('npc.html', items=items)
  
+ # Render Template for Potions
 @app.route('/potions/<int:num>')
 def pot_gen(num):
     items = []

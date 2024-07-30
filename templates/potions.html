@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NPC Generator</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='potion.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
 </head>
 <body>
-	<a href="/">Home</a>
+	<a class="backButton" href="/">Home</a>
     <h1>Generated Potions</h1>
     <div class="npc-container">
         {% for item in items %}

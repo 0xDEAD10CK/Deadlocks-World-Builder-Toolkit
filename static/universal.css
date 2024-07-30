@@ -1,0 +1,9 @@
+.backButton {
+	font-weight: bold;
+	list-style: none;
+	border: 1px black solid;
+	border-radius: 6px;
+	text-align: center;
+	padding: 5px 15px;
+	margin: 20px 50px;
+}
