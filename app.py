@@ -1,4 +1,5 @@
 import random
+import json
 
 from flask import Flask, request, jsonify, render_template
 from modules.FantasyNames import gen_name
@@ -6,6 +7,7 @@ from modules.npc import generateNPC
 from modules.potions import generate_potion
 from modules.wildmagictable import randomEffect
 from modules.tavern import generate_tavern
+from modules.player import getClass, getClassInformation
 app = Flask(__name__)
 
 with open('modules/done.txt', 'r') as file:
@@ -65,6 +67,15 @@ def random_effect():
 def create_tavern():
     tavern = generate_tavern()
     return render_template('tavern.html', tavern=tavern)
+
+@app.route('/classes/<string:classX>')
+def classInfo(classX):
+    classes = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"];
+    data = json.loads(getClassInformation(classX));
+    
+    return render_template('classes.html', data=data, classList=classes)
+ 
+ 
  # LOOT GENERATOR
  # LOCATION GENERATOR
  # QUEST GENERATOR

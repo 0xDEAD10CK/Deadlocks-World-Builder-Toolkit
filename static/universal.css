@@ -21,7 +21,7 @@ ul#menu {
 	padding: 0;
 }
 
-li.menuItem, li.listItem{
+li.menuItem, li.listItem, p.classMenuItem{
 	color: black;
 	font-weight: bold;
 	font-size: 1.5em;
@@ -30,7 +30,6 @@ li.menuItem, li.listItem{
 	border-radius: 6px;
 	text-align: center;
 	padding: 5px 0;
-	width: 200px;
 }
 
 li.menuItem:hover {
@@ -41,7 +40,9 @@ a {
 	text-decoration: none;
 }
 
-
+.title {
+	text-align: center;
+}
 .item-container {
     display: flex;
     flex-wrap: wrap;
@@ -78,6 +79,31 @@ a {
 	text-align: center;
 }
 
+.level {
+	display: flex;
+	gap: 20px;
+	width: auto;
+	border: 1px black solid;
+	border-radius: 6px;
+	padding: 0px 20px;
+	width: 700px;
+	margin: 0
+}
+
+.classMenu {
+	display: flex;
+	justify-content: center;
+	gap: 0;
+}
+
+p.classMenuItem {
+	margin: 0;
+	width: 5em;
+}
+
+.classListItem {
+	list-style: none;
+}
 @media only screen and (max-width: 480px) {
 	ul#menu {
 		display: grid;

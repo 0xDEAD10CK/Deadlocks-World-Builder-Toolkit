@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classes: {{data[0]["class"]["name"]}}</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='universal.css') }}">
+</head>
+<body>
+	<a class="backButton" href="/">Home</a>
+    <h1 class="title">{{ data[0]["class"]["name"] }}</h1>
+	
+	<div class="classMenu">
+		{% for class in classList %}
+			<a href="/classes/{{ class }}"><p class="classMenuItem">{{ class }}</p></a>
+		{% endfor %}
+	</div>
+	
+    <div class="item-container">
+		{% for level in data %}
+			<div class="level">
+				<div>
+					<h2>Level {{ level.level }}</h2>
+					<p>Proficiency Bonus: {{ level.prof_bonus }}</p>
+					<p>Ability Score Bonuses: {{ level.ability_score_bonuses }}</p>
+				</div>
+                {% if level.features %}
+					<div>
+						<h3>Features:</h3>
+						{% for feature in level.features %}
+							<p class="classListItem">{{ feature.name }}</p>
+						{% endfor %}
+					</div>
+                {% endif %}
+
+                {% if level.spellcasting %}
+					<div>
+						<h3>Spellcasting:</h3>
+						<p class="classListItem">Cantrips Known: {{ level.spellcasting.cantrips_known }}</p>
+						<p class="classListItem">Spells Known: {{ level.spellcasting.spells_known }}</p>
+						<p class="classListItem">Spell Slots (Level 1): {{ level.spellcasting.spell_slots_level_1 }}</p>
+						<p class="classListItem">Spell Slots (Level 2): {{ level.spellcasting.spell_slots_level_2 }}</p>
+						<p class="classListItem">Spell Slots (Level 3): {{ level.spellcasting.spell_slots_level_3 }}</p>
+						<p class="classListItem">Spell Slots (Level 4): {{ level.spellcasting.spell_slots_level_4 }}</p>
+						<p class="classListItem">Spell Slots (Level 5): {{ level.spellcasting.spell_slots_level_5 }}</p>
+						<p class="classListItem">Spell Slots (Level 6): {{ level.spellcasting.spell_slots_level_6 }}</p>
+						<p class="classListItem">Spell Slots (Level 7): {{ level.spellcasting.spell_slots_level_7 }}</p>
+						<p class="classListItem">Spell Slots (Level 8): {{ level.spellcasting.spell_slots_level_8 }}</p>
+						<p class="classListItem">Spell Slots (Level 9): {{ level.spellcasting.spell_slots_level_9 }}</p>
+							<!-- Add more spell slot levels as needed -->
+					</div>
+                {% endif %}
+
+                {% if level.class_specific %}
+					<div>
+					<h3>Class Specific:</h3>
+						{% for key, value in level.class_specific.items() %}
+							<p class="classListItem">{{ key.replace('_', ' ').title() }}: {{ value }}</h3>
+						{% endfor %}
+					</div>
+                {% endif %}
+            </div>
+		{% endfor %}
+    </div>
+</body>
+</html>
