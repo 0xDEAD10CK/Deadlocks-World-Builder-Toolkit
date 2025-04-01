@@ -117,6 +117,7 @@ highLevelMax = 5000
 def generate_potion(effect_count):
     effects = []
     price = 0
+    color = "#{:06x}".format(random.randint(0, 0xFFFFFF))
     for i in range(effect_count):
         roll = random.randint(1, 100)
         
@@ -130,4 +131,4 @@ def generate_potion(effect_count):
             effects.append(random.choice(highLevel) + ".")
             price = price + random.randrange(highLevelMin, highLevelMax, 100)
     
-    return {"effects": effects, "price": price}
+    return {"effects": effects, "price": price, "color": color}

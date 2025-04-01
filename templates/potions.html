@@ -11,7 +11,7 @@
     <h1>Generated Potions</h1>
     <div class="item-container">
         {% for item in items %}
-            <div class="item-card">
+            <div class="item-card" style="background-color: {{item.color}}">
 				<strong>Effect</strong> 
 				{% for effect in item['effects'] %}
 					<p>{{ effect }}</p>
