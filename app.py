@@ -8,6 +8,8 @@ from modules.potions import generate_potion
 from modules.wildmagictable import randomEffect
 from modules.tavern import generate_tavern
 from modules.player import getClass, getClassInformation
+from modules import loot, magic_tables, art_tables, gem_tables
+from modules import magic_tables
 app = Flask(__name__)
 
 with open('modules/done.txt', 'r') as file:
@@ -47,7 +49,7 @@ def npc_gen(num):
     for _ in range(num):
         items.append(generateNPC())
     return render_template('npc.html', items=items)
- 
+
  # Render Template for Potions
 @app.route('/potions/<int:num>')
 def pot_gen(num):
@@ -72,14 +74,27 @@ def create_tavern():
 def classInfo(classX):
     classes = ["barbarian", "bard", "cleric", "druid", "fighter", "monk", "paladin", "ranger", "rogue", "sorcerer", "warlock", "wizard"];
     data = json.loads(getClassInformation(classX));
-    
+
     return render_template('classes.html', data=data, classList=classes)
- 
- 
- # LOOT GENERATOR
+
+ # Render Template for generating loot.
+@app.route("/loot")
+def loot_page():
+    loot_result = None
+    loot_type = request.args.get("type")
+    cr_range = request.args.get("cr")
+
+    if loot_type and cr_range:
+        func_name = f"generate_{loot_type}_cr_{cr_range}"
+        func = getattr(loot, func_name, None)
+        if func:
+            d100_roll = random.randint(1,100)
+            loot_result = func()
+
+    return render_template("loot.html", loot_result=loot_result)
  # LOCATION GENERATOR
  # QUEST GENERATOR
- # 
- 
+ #
+
 if __name__ == '__main__':
     app.run(debug=True)

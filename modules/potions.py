@@ -1,5 +1,13 @@
 import random
 
+rarity_table = {
+    range(2, 3): ("Common", 200),
+    range(3, 5): ("Uncommon", 500),
+    range(5, 7): ("Rare", 1000),
+    range(7, 9): ("Very Rare", 2000),
+    range(9, 100): ("Legendary", 5000)
+}
+
 lowLevel = [
     "Gain invisibility for 1 minute",
     "Gain one use of Fire Breathing",
@@ -104,31 +112,35 @@ highLevel = [
 ]
 
 
-lowLevelMin = 200
-lowLevelMax = 600
-
-midLevelMin = 800
-midLevelMax = 1500
-
-highLevelMin = 2000
-highLevelMax = 5000
-
+def get_rarity(points):
+    for r in rarity_table:
+        if points in r:
+            return rarity_table[r]
+    return ("Unknown", 100)  # fallback
 
 def generate_potion(effect_count):
     effects = []
-    price = 0
+    total_points = 0
     color = "#{:06x}".format(random.randint(0, 0xFFFFFF))
-    for i in range(effect_count):
+
+    for _ in range(effect_count):
         roll = random.randint(1, 100)
-        
-        if 0 < roll < 60:
+
+        if 1 <= roll <= 60:
             effects.append(random.choice(lowLevel) + ".")
-            price = price + random.randrange(lowLevelMin, lowLevelMax, 100)
-        elif 61 < roll < 85:
+            total_points += 1
+        elif 61 <= roll <= 85:
             effects.append(random.choice(midLevel) + ".")
-            price = price + random.randrange(midLevelMin, midLevelMax, 100)
+            total_points += 2
         else:
             effects.append(random.choice(highLevel) + ".")
-            price = price + random.randrange(highLevelMin, highLevelMax, 100)
-    
-    return {"effects": effects, "price": price, "color": color}
+            total_points += 3
+
+    rarity, price = get_rarity(total_points)
+
+    return {
+        "effects": effects,
+        "rarity": rarity,
+        "price": price,
+        "color": color
+    }
