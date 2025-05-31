@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>D&D Notes</title>
+    <script src="{{ url_for('static', filename='notes.js') }}" defer></script>
+    <style>
+        .note-section {
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px dashed gray;
+        }
+        .editable {
+            border: 1px solid #ccc;
+            padding: 10px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>D&D Notes</h1>
+
+    <input type="text" id="note-title" placeholder="Note Title">
+    <button onclick="createNote()">+ Add Section</button>
+    <button onclick="saveNote()">💾 Save</button>
+    <button onclick="loadNote()">📂 Load</button>
+
+    <div id="note-container"></div>
+</body>
+</html>

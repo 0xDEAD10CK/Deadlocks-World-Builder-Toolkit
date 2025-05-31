@@ -12,6 +12,13 @@ from modules import loot, magic_tables, art_tables, gem_tables
 from modules import magic_tables
 app = Flask(__name__)
 
+import os
+
+NOTES_DIR = "Notes"
+if not os.path.exists(NOTES_DIR):
+	os.mkdir(NOTES_DIR)
+
+
 with open('modules/done.txt', 'r') as file:
     content = file.read()
 
@@ -95,6 +102,36 @@ def loot_page():
  # LOCATION GENERATOR
  # QUEST GENERATOR
  #
+
+
+@app.route("/notes")
+def notes():
+    return render_template("notes.html")
+
+@app.route("/save_note", methods=["POST"])
+def save_note():
+    data = request.json
+    filename = data.get("title", "untitled").replace(" ", "_")
+    content = data.get("content", "")
+    ext = data.get("format", "html")
+
+    filepath = os.path.join(NOTES_DIR, f"{filename}.{ext}")
+    with open(filepath, "w", encoding="utf-8") as f:
+        f.write(content)
+
+    return jsonify({"message": "Note saved successfully!", "file": filepath})
+
+@app.route("/load_note", methods=["GET"])
+def load_note():
+    filename = request.args.get("title")
+    ext = request.args.get("format", "html")
+    filepath = os.path.join(NOTES_DIR, f"{filename}.{ext}")
+    if os.path.exists(filepath):
+        with open(filepath, "r", encoding="utf-8") as f:
+            return jsonify({"content": f.read()})
+    else:
+        return jsonify({"error": "File not found"}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
